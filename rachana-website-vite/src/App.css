@@ -1,0 +1,233 @@
+/* Piano home Content*/
+ #content {
+    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+    background-image: url(./assets/2.png);
+    background-size: cover;
+ }
+ 
+ #content-inner {
+     padding: 60px 0;
+ }
+
+ #hint{
+    color: #92705F;
+    left: 0; 
+    right: 0; 
+    margin-inline: auto; 
+    width: fit-content;
+    position: absolute;
+    top: 540px;
+    font-family: 'HelveticaNeue-Light', sans-serif;
+    font-weight: 900;
+    font-size: 10px;
+    
+ }
+
+ #directions{
+    color: #F4F7FF;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: fit-content;
+    z-index: 3;
+    position: absolute;
+    top: 150px;
+    font-size: 30px;
+    font-family:'HelveticaNeue-Light', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+ }
+ 
+ 
+ #piano {
+     position: relative;
+     margin: 0 auto;
+     margin-top: 150px;
+     padding: 115px 40px 16px;
+     width: 782px;
+     background: #de472f;
+     border-radius: 20px;
+     z-index: 0;
+ }
+ 
+ /** keys */
+ 
+ #piano .keys {
+     width: 780px;
+     padding: 2px 0 0 2px;
+     overflow: hidden;
+     /*background: #000;*/
+     border-radius: 0 0 4px 4px;
+ }
+ 
+ .key {
+     float: left;
+     position: relative;
+     width: 50px;
+     height: 180px;
+     margin: 0 2px 2px 0;
+     background: #fff;
+     border-radius: 0 0 4px 4px;
+ }
+ .key.pressed,
+ .key:active {
+     background: #f4f3f3;
+     box-shadow: inset 3px 2px 3px #999, inset -3px 2px 3px #999;
+ }
+ .key.black {
+     width: 0;
+     margin: 0;
+     z-index: 2;
+ }
+ .key.black:after {
+     content: "";
+     position: absolute;
+     top: -2px;
+     left: -16px;
+     display: block;
+     width: 32px;
+     height: 117px;
+     background: #272836;
+     border-radius: 0 0 4px 4px;
+     box-shadow: 1px 1px 0 #555, 2px 2px 0 #555;
+ }
+ .key.black1:after {
+     left: -20px;
+ }
+ .key.black3:after {
+     left: -16px;
+ }
+ .key.black.pressed:after,
+ .key.black:active:after {
+     background-color: #222;
+ }
+ 
+
+ /* Home Page Content */
+ .words{
+    justify-content: left;
+    padding-left: 20px;
+    padding-top: 150px;
+    color: #623F4C;
+    font-family: 'HelveticaNeue-Light', sans-serif;
+    position: absolute;
+    width: 75%;
+}
+
+#home-content {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    background-image: url(./assets/1.png);
+    background-size: cover;
+    overflow: hidden;
+ }
+
+ .about{
+    height: 150px;
+    padding-left: 87%;
+    padding-top: 1%;
+ }
+.frog{
+    height: 150px;
+}
+
+.frog:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 2em #74b624);
+}
+
+.kw{
+    height: 175px;
+    padding-left: 87%;
+    padding-top: 1%;
+ }
+
+.butterfly{
+    height: 175px;
+}
+.butterfly:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 2em #bfbae2);
+}
+
+.fyf{
+    height: 175px;
+    padding-left: 87%;
+    padding-top: 1%;
+}
+.issey{
+    height: 175px;
+}
+.issey:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 2em #ee2e3d);
+}
+ 
+.piano-back{
+    position: absolute;
+    top: 97%;
+    left: 1%;
+    background-color: transparent;
+    border-style: none;
+    color: #92705F;
+    font-size: 20px;
+    font-style: 'HelveticaNeue-Light', sans-serif;
+}
+
+.piano-back:hover{
+    transform: scale(1.05);
+    color: #818455;
+}
+
+.home-back{
+    position: absolute;
+    bottom: 97%;
+    left: 0.25%;
+    background-color: transparent;
+    border-style: none;
+    color: #005348;
+    font-size: 20px;
+    font-style: 'HelveticaNeue-Light', sans-serif;
+}
+
+.home-back:hover{
+    transform: scale(1.05);
+    color: #2D80A7;
+}
+
+/* transition */
+.slide-in-piano-home{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url(./assets/2.png);
+    background-size: cover;
+    transform-origin: bottom;
+}
+
+.slide-out{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url(./assets/1.png);
+    background-size: cover;
+    transform-origin: top;
+
+}
+
+.slide-in{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url(./assets/1.png);;
+    transform-origin: top;
+}
