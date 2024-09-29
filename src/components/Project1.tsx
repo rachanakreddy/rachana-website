@@ -1,6 +1,5 @@
 import '../App.css'
-import React, { useState, useEffect, useRef } from 'react';
-import Typewriter from 'typewriter-effect';
+import React, { useState, useRef } from 'react';
 import frog from '../assets/frog.png';
 import butterfly from '../assets/butterfly.png';
 import issey from '../assets/issey.png';
@@ -15,9 +14,6 @@ const GoToHome= ({ onClick }: { onClick: () => void }) => {
         </button>
     )
 }
-
-const message1: string = "Project: Keyboard Warrior"
-const message2: string =  "I'm a post-grad computer science major. Unemployed.I'm a post-grad computer science major. Unemployed.I'm a post-grad computer science major. Unemployed.I'm a post-grad computer science major. Unemployed.I'm a post-grad computer science major. Unemployed.I'm a post-grad computer science major. Unemployed.I'm a post-grad computer science major. Unemployed. ";
 
 const Project1: React.FC = () => {
     const navigate = useNavigate();

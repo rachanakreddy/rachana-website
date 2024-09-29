@@ -39,8 +39,8 @@ interface DataGeneratorConfig {
 }
 
 function DataGenerator(
-  styleFn: (freq: number, volume: number, i: number, sampleRate: number, seconds: number, maxI: number) => number,
-  volumeFn: (data: number, freq: number, volume: number, i: number, sampleRate: number, seconds: number, maxI: number) => number,
+  styleFn: (freq: number, i: number, sampleRate: number, maxI: number) => number,
+  volumeFn: (data: number, volume: number, i: number, maxI: number) => number,
   cfg: DataGeneratorConfig
 ): string[] {
   cfg = {
@@ -60,12 +60,9 @@ function DataGenerator(
       data.push(
         asBytes(
           volumeFn(
-            styleFn(cfg.freq!, cfg.volume!, i, cfg.sampleRate!, cfg.seconds!, maxI),
-            cfg.freq!,
+            styleFn(cfg.freq!, i, cfg.sampleRate!, maxI),
             cfg.volume!,
             i,
-            cfg.sampleRate!,
-            cfg.seconds!,
             maxI
           ) * attack(i),
           2
@@ -79,25 +76,21 @@ function DataGenerator(
 
 DataGenerator.style = function (
   freq: number,
-  volume: number,
   i: number,
   sampleRate: number,
-  seconds: number
 ): number {
   return Math.sin((2 * Math.PI * (i / sampleRate)) * freq);
 };
 
 DataGenerator.volume = function (
   data: number,
-  freq: number,
   volume: number,
   i: number,
-  sampleRate: number,
-  seconds: number,
   maxI: number
 ): number {
   return volume * ((maxI - i) / maxI) * data;
 };
+
 
 // Function to generate data URI for the audio
 function toDataURI(cfg: DataGeneratorConfig): string {
