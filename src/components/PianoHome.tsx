@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {useNavigate} from "react-router-dom";
 import '../App.css';
 import {motion} from"framer-motion";
+import plants from  '../assets/3.png';
 
 // TypeScript: Declare canBlob for conditional Blob creation
 let canBlob: boolean = false;
@@ -179,11 +180,11 @@ interface PianoKey {
   freq: number;
 }
 
-const Piano: React.FC = () => {
-  const navigate = useNavigate();
+const Piano: React.FC<{onNotePlayed: (key: number) => void }> = ({ onNotePlayed }) => {
+  //const navigate = useNavigate();
   const [keys, setKeys] = useState<PianoKey[]>([]);
   const [pressedKeys, setPressedKeys] = useState<{ [key: number]: boolean }>({});
-  const [playedNotes, setPlayedNotes] = useState<number[]>([]);
+  //const [playedNotes, setPlayedNotes] = useState<number[]>([]);
   const keyNotes = useRef<{ [key: number]: number }>({
     65: 0, 87: 1, 83: 2, 69: 3, 68: 4, 70: 5, 84: 6, 71: 7, 89: 8, 72: 9, 85: 10, 74: 11, 75: 12,
     79: 13, 76: 14, 80: 15, 186: 16, 59: 16, 222: 17, 221: 18, 13: 19,
@@ -202,7 +203,6 @@ const Piano: React.FC = () => {
       const key = keyNotes.current[e.keyCode];
       if (key !== undefined && !pressedKeys[key]) {
         playKey(key);
-        console.log("key being passed to playKey" + key);
         setPressedKeys((prev) => ({ ...prev, [key]: true }));
       }
     };
@@ -231,9 +231,7 @@ const Piano: React.FC = () => {
     const audio = new Audio(toDataURI({ freq: noteToFreq(key-12) }));
     audio.currentTime = 0.001;
     audio.play();
-    setPlayedNotes((prevNotes) => [...prevNotes, key]);
-    console.log(key)
-    console.log(playedNotes);
+    onNotePlayed(key);
   };
 
   const handleMouseDown = (key: number) => {
@@ -248,13 +246,6 @@ const Piano: React.FC = () => {
       return newKeys;
     });
   };
-
-  useEffect(() => {
-    // Check if the last 8 notes match the Für Elise sequence
-    if (playedNotes.slice(-9).toString() === furEliseSeq.toString()) {
-      navigate('/home');
-    }
-  }, [playedNotes, navigate]);
 
   return (
     <div className="keys">
@@ -271,9 +262,44 @@ const Piano: React.FC = () => {
 };
 
 const PianoHome: React.FC = () => {
+  const navigate = useNavigate();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [exitPlants, setExitPlants] = useState(false); // Track plant movement
+  const [playedNotes, setPlayedNotes] = useState<number[]>([]);
+
+  const handleTransition = () => {
+      setExitPlants(true); // Start the plant movement
+      setTimeout(() => {
+          setIsTransitioning(true); // Start the background transition
+          setTimeout(() => {
+              navigate('/home');
+          }, 1000); // Match this to the animation duration
+      }, 1000); // Delay navigation to allow for plant movement
+  };
+
+  const handleNotePlayed = (key: number) => {
+    const newPlayedNotes = [...playedNotes, key];
+    console.log(key);
+    console.log(newPlayedNotes);
+    console.log(furEliseSeq);
+    console.log(newPlayedNotes.slice(-furEliseSeq.length).toString() === furEliseSeq.toString());
+
+    if (newPlayedNotes.slice(-9).toString() === furEliseSeq.toString()) {
+      console.log("i'm here");
+      handleTransition();
+    }
+    setPlayedNotes(newPlayedNotes);
+  };
+
   return (
     <>
-      <div id="content">
+    <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', height: '100vh', overflow: 'hidden', backgroundColor: '#dab965' }}>
+      <motion.div 
+        id="content"
+        initial={{ y: 0 }} // Initial position
+        animate={{ y: isTransitioning ? '100vh' : 0 }} // Move up when transitioning
+        transition={{ duration: 1 }}// Transition duration
+      >
         <div id = "directions">
               Play the first nine notes of Für Elise to enter.
         </div>
@@ -282,10 +308,23 @@ const PianoHome: React.FC = () => {
         </div>
         <div id="content-inner">
           <div id = "piano">
-            <Piano />
+            <Piano onNotePlayed={handleNotePlayed}/>
           </div>
         </div>
+        <div id = "plantsDiv">
+          <motion.img
+            src={plants}
+            className={`plants ${exitPlants ? 'moving' : ''}`}
+            initial={false}
+            animate={{ y: exitPlants ? 250 : 0 }}
+            transition={{ duration: 0.75 }} // Set duration to match your CSS
+            />
+        </div>
+      </motion.div>
       </div>
+
+      
+
 </>
   );
 };

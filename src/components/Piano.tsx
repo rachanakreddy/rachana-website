@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {useNavigate} from "react-router-dom";
 import '../App.css';
 import {motion} from"framer-motion";
+import plants from  '../assets/3.png';
 
 // TypeScript: Declare canBlob for conditional Blob creation
 let canBlob: boolean = false;
@@ -262,43 +263,70 @@ const Piano: React.FC = () => {
   );
 };
 
-const GoToHome = () => {
-  const navigate = useNavigate();
-
+const GoToHome = ({ onClick }: { onClick: () => void }) => {
   return (
-      <button className = "home-back" onClick = {() => {navigate('/home')}}>
-          Take me back home..
+      <button className = "back piano-back" onClick = {onClick}>
+          take me back home.
       </button>
   )
 }
 
-const PianoHome: React.FC = () => {
+const Piano1: React.FC = () => {
+  const navigate = useNavigate();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [plantsVisible, setPlantsVisible] = useState(false);
+  const [exitPlants, setExitPlants] = useState(false);
+
+  useEffect(() => {
+    setPlantsVisible(true);
+  }, []);
+
+  const handleNavigate = () => {
+    setExitPlants(true);
+    setTimeout(()=>{
+      setIsTransitioning(true);
+      setTimeout(()=>{
+        navigate('/home'); 
+      }, 1000);
+    }, 1000); 
+  };
+
+
   return (
     <>
-      <div id="content">
+      <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', height: '100vh', overflow: 'hidden', backgroundColor: '#dab965' }}>
+        <motion.div 
+         id="content"
+         initial={{ y: 0 }} // Initial position
+         animate={{ y: isTransitioning ? '100vh' : 0 }} // Move up when transitioning
+         transition={{ duration: 1 }}// Transition duration
+
+        >
         <div id="content-inner">
-          <div id = "piano">
+          <motion.div 
+            id = "piano"
+            initial={{ scale: 0 }}
+            animate={{scale: 1 }}
+            transition={{duration: 1, ease: [0, 0.25, 0.5, 0.75, 1.5], scale: {type: "spring",damping: 75,stiffness: 100,restDelta: 0.001}}}
+            >
             <Piano />
-          </div>
+          </motion.div>
         </div>
-      <GoToHome />
+        <div id = "plantsDiv">
+          <motion.img
+              src={plants}
+              className="plants"
+              initial={{ y: 250 }} // Start position off-screen (below)
+              animate={{ y: exitPlants ? 500:0 }} // End position (normal place)
+              transition={{ duration: 0.75 }} // Duration of the animation
+              style={{ display: plantsVisible ? 'block' : 'none' }} // Only show when the animation starts
+          />
+        </div>
+      <GoToHome onClick={handleNavigate}/>
+      </motion.div>
       </div>
-      <motion.div
-            className = "slide-in"
-            initial = {{scaleY: 1}}
-            animate = {{scaleY: 0}}
-            exit = {{scaleY: 0}}
-            transition = {{duration: 3, ease: [0.22, 1, 0.36, 1]}}
-        />
-        <motion.div
-            className = "slide-out"
-            initial = {{scaleY: 0}}
-            animate = {{scaleY: 0}}
-            exit = {{scaleY: 1}}
-            transition = {{duration: 3, ease: [0.22, 1, 0.36, 1]}}
-        />
 </>
   );
 };
 
-export default PianoHome;
+export default Piano1;
