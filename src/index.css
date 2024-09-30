@@ -20,3 +20,12 @@ html, body, #app, #app>div {
   padding: 0px;
   overflow: hidden;
 }
+
+@media (max-width: 768px) {
+  html, body, #app, #app>div {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow: scroll;
+  }
+}
