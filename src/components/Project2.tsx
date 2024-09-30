@@ -81,7 +81,7 @@ const Project2: React.FC = () => {
                         Svelte is utilized for building dynamic, responsive UI components, providing a smooth user experience. 
                         Docker facilitates containerization, ensuring scalability and efficient handling of multiple user requests.
                         <br/><br/>
-                        <span style = {{color: "#16463F"}}>Tech stack: Svelte, JavaScript, Node.js,Docker, MongoDB, and Serp API.</span> 
+                        <span style = {{color: "#16463F"}}>Tech stack: Svelte, JavaScript, Node.js, Docker, MongoDB, and Serp API.</span> 
                         <br/><br/>
                         <a href="https://github.com/rachanakreddy/findYourFit" target="_blank" rel="noopener noreferrer" style={{color: "#D6CFBE", textDecoration: "none"}}>
                            <img src={gitCat} className = "social-icons"></img>

@@ -85,7 +85,7 @@ const About: React.FC = () => {
                                 <a href="https://www.linkedin.com/in/rachanakreddy/" target="_blank" rel="noopener noreferrer" style={{color: "#D6CFBE", textDecoration: "none"}}>
                                     <img src={linkedIn} className = "social-icons"></img>
                                 </a> 
-                                <a href="https://github.com/rachanakreddy/findYourFit" target="_blank" rel="noopener noreferrer" style={{color: "#D6CFBE", textDecoration: "none"}}>
+                                <a href="https://github.com/rachanakreddy/" target="_blank" rel="noopener noreferrer" style={{color: "#D6CFBE", textDecoration: "none"}}>
                                     <img src={gitCat} className = "social-icons"></img>
                                 </a> 
                             </div>

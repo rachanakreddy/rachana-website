@@ -5,7 +5,7 @@
     min-width: 100%;
     background-color: #b5ced4;
     background-size: cover;
-    overflow: hidden;
+    overflow: scroll;
  }
 
  #plantsDiv{
@@ -16,6 +16,7 @@
 
  .plants {
     display: block;
+
     width: 100%;
     padding-bottom: 0px;
     transition: transform 1s ease; /* Add transition for transform */
@@ -36,7 +37,7 @@
     margin-inline: auto; 
     width: fit-content;
     position: absolute;
-    top: 540px;
+    top: 65vh;
     font-family: 'HelveticaNeue-Light', sans-serif;
     font-weight: 900;
     font-size: 10px;
@@ -50,7 +51,7 @@
     margin-inline: auto;
     width: fit-content;
     position: absolute;
-    top: 150px;
+    top: 5vw;
     font-size: 30px;
     font-family:'HelveticaNeue-Light', sans-serif;
     font-weight: 600;
@@ -61,7 +62,7 @@
  #piano {
      position: relative;
      margin: 0 auto;
-     margin-top: 150px;
+     margin-top: 5vw;
      padding: 115px 40px 16px;
      width: 782px;
      background: #EB3C27;
@@ -73,7 +74,7 @@
  #piano .keys {
      width: 780px;
      padding: 2px 0 0 2px;
-     overflow: hidden;
+     overflow: scroll;
      /*background: #000;*/
      border-radius: 0 0 4px 4px;
  }
@@ -130,6 +131,7 @@
     font-weight: 900; 
     z-index:1;
     width: 90%;
+    background: transparent;
 }
 .title{
     font-size: 85px;
@@ -147,6 +149,7 @@
     font-size: 180px;
     position: relative;
     line-height: 250px;
+    background: transparent;
 }
 
 #userDirect{
@@ -162,7 +165,9 @@
     min-height: 100%;
     background-color: #dab965;
     background-size: cover;
-    overflow: hidden;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin: 0;
  }
 
  .icons{
@@ -221,18 +226,19 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 325px;
+    height: 100vh;
     overflow: hidden;
-    z-index: 0;
+    z-index: -1;
  }
 
  .mountain{
     display: block;
-    z-index: 0;
+    z-index: -1;
     width: 100%;
-    height: auto;
-    position: relative;
+    height: 100%;
+    padding-top: 33vw;
     object-fit: cover; 
+    object-position: left;
     transition: transform 1.25s ease;
  }
 
@@ -285,7 +291,7 @@
     min-height: 100%;
     background-color: #16463F;
     background-size: cover;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .about-title{
@@ -302,7 +308,9 @@
     min-width: 100%;
     min-height: 100%;
     background-color: #533146;
+    overflow: scroll;
 }
+
 
 .project1-title{
     color:#F4F7FF;
@@ -319,7 +327,7 @@
     min-height: 100%;
     background-color: #C34121;
     background-size: cover;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .project2-title{
@@ -345,13 +353,13 @@
 }
 
 
-@media (max-width: 768px)and (orientation: portrait){
+@media only screen and (max-width: 768px)and (orientation: portrait){
     #hint{
         z-index: -1;
         color: #b5ced4;
     }
     #directions{
-        top: 125px;
+        top: 100px;
         font-size: 25px;
         text-align: center;
     }
@@ -372,7 +380,7 @@
 
     #piano {
         position: relative;
-        margin-top: 50%;
+        margin-top: 40vw;
         margin-bottom: 10%;
         padding: 44px 15px 6px;
         width: 300px;
@@ -446,10 +454,11 @@
     }
     #mountainDiv {
         height: 400px; 
+        overflow: hidden;
     }
 
     .mountain {
-        top: 20%;
+        top: 33vw;
         height: auto; 
         object-position: left;
         min-height: 400px; 
@@ -513,15 +522,27 @@
 
 }
 
+
 @media only screen and (max-width: 768px) and (orientation: landscape) {
+    body {
+        margin: 0; /* Remove default margin */
+        width: 100vw; /* Ensure full viewport width */
+        overflow-x: hidden; /* Hide any overflow */
+    }
+
+    #content{
+        overflow: scroll;
+    }
+
     #hint{
         z-index: -1;
         color: #b5ced4;
     }
     #directions{
-        top: 25px;
+        top: 10px;
         font-size: 25px;
         text-align: center;
+        z-index: 3;
     }
     #plantsDiv{
         position: fixed;
@@ -532,17 +553,18 @@
     
      .plants {
         display: block;
+        padding-top: 50px;
         width: 100%;
-        height: 90%;
+        height: 90px;
         padding-bottom: 0px;
         transition: transform 1s ease; /* Add transition for transform */
     }
 
     #piano {
         position: relative;
-        margin-top: 10%;
+        margin-top: 6%;
         margin-bottom: 10%;
-        padding: 35px 15px 6px;
+        padding: 40px 15px 6px;
         width: 300px;
         background: #EB3C27;
         border-radius: 20px;
@@ -561,7 +583,7 @@
     .key {
         float: left;
         position: relative;
-        width: 19px;
+        width: 19.21px;
         height: 69.23px;
         margin: 0 0.8px 0.8px 0;
         background: #fff;
@@ -605,24 +627,26 @@
         font-size: 87px;
         font-weight: 900;
         font-style: bold;
-        line-height: 80px;
+        top: 20px;
+        line-height: 100px;
     }
 
     #userDirect{
         padding-left: 5px;
-        font-size: 15px;
+        font-size: 30px;
         color: #F4F7FF;
-        line-height: 55px;
+        top: 20px;
     }
     #mountainDiv {
         height: 400px; 
+        overflow: hidden;
     }
 
     .mountain {
-        top: 50%;
-        height: auto; 
+        top: 15vh;
+        height: auto;
         object-position: left;
-        min-height: 400px; 
+        min-height: 400px;
     }
 
 
@@ -680,3 +704,194 @@
     }
 
   }
+
+  @media only screen and (min-width: 769px) and (max-width: 932px) and (orientation: landscape) {
+    #name{
+        top: 20px;
+        font-size: 100px;
+        line-height: 20px;
+    }
+
+    #home-content{
+        overflow: hidden;
+    }
+
+    #userDirect{
+        padding-left: 5px;
+        font-size: 15px;
+        color: #F4F7FF;
+        line-height: 55px;
+    }
+
+    .mountain{
+        padding-top: 20vw;
+    }
+
+    body {
+        margin: 0; /* Remove default margin */
+        width: 100vw; /* Ensure full viewport width */
+        overflow-x: hidden; /* Hide any overflow */
+    }
+
+    #content{
+        overflow: scroll;
+    }
+
+    #hint{
+        z-index: -1;
+        color: #b5ced4;
+    }
+    #directions{
+        top: 10px;
+        font-size: 25px;
+        text-align: center;
+        z-index: 3;
+    }
+    #plantsDiv{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 1;
+     }
+    
+     .plants {
+        display: block;
+        padding-top: 50px;
+        width: 100%;
+        height: 90px;
+        padding-bottom: 0px;
+        transition: transform 1s ease; /* Add transition for transform */
+    }
+
+    #piano {
+        position: relative;
+        margin-top: 6%;
+        margin-bottom: 10%;
+        padding: 40px 15px 6px;
+        width: 300px;
+        background: #EB3C27;
+        border-radius: 20px;
+        scale: 1.75;
+        z-index: 2;
+    }
+
+    #piano .keys {
+        width: 300px;
+        padding: 0.8px 0 0 0.8px;
+        overflow: hidden;
+        /*background: #000;*/
+        border-radius: 0 0 1.5px 1.5px;
+    }
+    
+    .key {
+        float: left;
+        position: relative;
+        width: 19.21px;
+        height: 69.23px;
+        margin: 0 0.8px 0.8px 0;
+        background: #fff;
+        border-radius: 0 0 1.5px 1.5px;
+    }
+    .key.pressed,
+    .key:active {
+        background: #f4f3f3;
+        box-shadow: inset 1.15px 0.8px 1.15px #999, inset -1.15px 0.8px 1.15px #999;
+    }
+    .key.black {
+        width: 0;
+        margin: 0;
+        z-index: 2;
+    }
+    .key.black:after {
+        content: "";
+        position: absolute;
+        top: -0.8px;
+        left: -6.15px;
+        display: block;
+        width: 12px;
+        height: 45px;
+        background: #272836;
+        border-radius: 0 0 1.5px 1.5px;
+        box-shadow: 0.4px 0.4px 0 #555, 0.8px 0.8px 0 #555;
+    }
+    .key.black1:after {
+        left: -7.7px;
+    }
+    .key.black3:after {
+        left: -6.15px;
+    }
+    .key.black.pressed:after,
+    .key.black:active:after {
+        background-color: #222;
+    }
+
+    /*home*/
+
+    #mountainDiv {
+        height: 400px; 
+        overflow: hidden;
+    }
+
+    .mountain {
+        top: 15vh;
+        height: auto;
+        object-position: left;
+        min-height: 400px;
+    }
+
+
+    .icons{
+        gap: 10px;
+    }
+
+    .about{
+        width: 50px;
+        padding-top: 1%;
+    }
+    .frog{
+        height: 50px;
+        z-index: 1;
+    }
+    .kw{
+        width: 50px;
+        padding-top: 1%;
+     }
+    
+    .butterfly{
+        height: 50px;
+        z-index: 1;
+    }
+    .fyf{
+        width: 50px;
+        padding-top: 1%;
+    }
+    .issey{
+        height: 50px;
+    }
+
+    .words{
+        top: 15%;
+    }
+
+    .title{
+        font-size: 40px;
+    }
+
+    .description{
+        font-size: 14px;
+    }
+
+    #about-content{
+        overflow: scroll;
+    }
+
+    #project1-content{
+        overflow: scroll;
+    }
+
+    #project2-content{
+        overflow: scroll;
+    }
+
+
+}
