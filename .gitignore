@@ -22,8 +22,9 @@ tsconfig.app.tsbuildinfo
 tsconfig.json
 tsconfig.node.json
 tsconfig.node.tsbuildinfo
+eslint.config.jsonvite.config.js
 
 # gatekeeping
 src/assets
 src/components/Piano.tsx
-src/components/PianoHome.tsx
+src/components/PianoHome.tsx 
