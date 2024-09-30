@@ -22,8 +22,8 @@ tsconfig.app.tsbuildinfo
 tsconfig.json
 tsconfig.node.json
 tsconfig.node.tsbuildinfo
-eslint.config.json
-vite.config.js
+eslint.config.js
+vite.config.ts
 
 # gatekeeping
 src/assets
